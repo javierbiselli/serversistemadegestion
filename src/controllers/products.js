@@ -98,6 +98,11 @@ const updateProduct = async (req, res) => {
         isActive: req.body.isActive,
         hasDiscount: req.body.hasDiscount,
         discountPercentage: req.body.discountPercentage,
+        discountValidDate: req.body.discountValidDate,
+        stock: req.body.stock,
+        hasPromotion: req.body.hasPromotion,
+        promotionMessage: req.body.promotionMessage,
+        promotionValidDate: req.body.promotionValidDate,
       },
       { new: true }
     );
