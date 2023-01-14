@@ -1,10 +1,10 @@
-import firebase from '../firebase';
+import firebase from "../firebase";
 
 const verifyToken = async (req, res, next) => {
   const { token } = req.headers;
   if (!token) {
     return res.status(400).json({
-      message: 'Provide a Token',
+      message: "Provide a Token",
       data: undefined,
       error: true,
     });
