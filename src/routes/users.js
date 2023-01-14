@@ -3,6 +3,6 @@ import usersController from "../controllers/users";
 
 const router = express.Router();
 
-router.get("/:id", usersController.getUserById);
+router.get("/:firebaseUid", usersController.getUserById);
 
 export default router;

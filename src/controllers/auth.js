@@ -42,6 +42,12 @@ const register = async (req, res) => {
       firebaseUid: newFirebaseUser.uid,
       name: req.body.name,
       email: req.body.email,
+      shopName: req.body.shopName,
+      shopAddress: req.body.shopAddress,
+      shopTel: req.body.shopTel,
+      shopDescription: req.body.shopDescription,
+      shopSchedule: req.body.shopSchedule,
+      shopExtraInfo: req.body.shopExtraInfo,
     });
     return res.status(201).json({
       message: "Usuario creado con exito",

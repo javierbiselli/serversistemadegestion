@@ -103,6 +103,7 @@ const updateProduct = async (req, res) => {
         hasPromotion: req.body.hasPromotion,
         promotionMessage: req.body.promotionMessage,
         promotionValidDate: req.body.promotionValidDate,
+        hasStar: req.body.hasStar,
       },
       { new: true }
     );

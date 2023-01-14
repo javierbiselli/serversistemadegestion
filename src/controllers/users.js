@@ -2,7 +2,7 @@ import User from "../models/users";
 
 const getUserById = async (req, res) => {
   try {
-    const user = await User.findOne(req.params.firebaseUid);
+    const user = await User.findOne({ firebaseUid: req.params.firebaseUid });
     if (user) {
       return res.status(200).json({
         message: "Usuario encontrado",

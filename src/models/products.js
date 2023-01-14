@@ -14,7 +14,8 @@ const productsSchema = new mongoose.Schema({
   hasPromotion: { type: Boolean, required: false },
   promotionMessage: { type: String, required: false },
   promotionValidDate: { type: String, required: false },
-  owner: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+  owner: { type: String, required: true },
+  hasStar: { type: Boolean, required: true },
 });
 
 export default mongoose.model("Product", productsSchema);
