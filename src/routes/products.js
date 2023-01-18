@@ -1,13 +1,14 @@
 import express from "express";
 import productsController from "../controllers/products";
+import authMiddleware from "../middlewares/auth";
 
 const router = express.Router();
 
 router
   .get("/", productsController.getProducts)
-  .post("/", productsController.createProduct)
+  .post("/", authMiddleware.verifyToken, productsController.createProduct)
   .get("/:id", productsController.getProductById)
-  .delete("/:id", productsController.deleteProduct)
-  .put("/:id", productsController.updateProduct);
+  .delete("/:id", authMiddleware.verifyToken, productsController.deleteProduct)
+  .put("/:id", authMiddleware.verifyToken, productsController.updateProduct);
 
 export default router;

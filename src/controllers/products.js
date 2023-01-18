@@ -37,7 +37,7 @@ const createProduct = async (req, res) => {
 
 const getProductById = async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id);
+    const product = await Product.findById(req.params.id).populate("shopId");
     if (product) {
       return res.status(200).json({
         message: "Producto encontrado",
