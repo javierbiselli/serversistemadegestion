@@ -7,8 +7,8 @@ const router = express.Router();
 router
   .get("/", productsController.getProducts)
   .post("/", authMiddleware.verifyToken, productsController.createProduct)
-  .get("/:id", productsController.getProductById)
   .delete("/:id", authMiddleware.verifyToken, productsController.deleteProduct)
-  .put("/:id", authMiddleware.verifyToken, productsController.updateProduct);
+  .put("/:id", authMiddleware.verifyToken, productsController.updateProduct)
+  .get("/search", productsController.searchProducts);
 
 export default router;

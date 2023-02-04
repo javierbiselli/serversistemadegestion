@@ -8,6 +8,6 @@ router
   .get("/", shopsController.getShops)
   .get("/:id", shopsController.getShopById)
   .post("/", authMiddleware.verifyToken, shopsController.createShop)
-  .put("/:id", authMiddleware.verifyToken, shopsController.updateShop);
+  .put("/:id", shopsController.updateShop);
 
 export default router;

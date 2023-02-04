@@ -86,12 +86,12 @@ const updateShop = async (req, res) => {
     }
     return res.status(200).json({
       message: "Tienda actualizada",
-      data: product,
+      data: shop,
       error: false,
     });
   } catch (error) {
     return res.status(400).json({
-      message: "Ocurrio un error",
+      message: error.message + "Ocurrio un error",
       data: error,
       error: true,
     });

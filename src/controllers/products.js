@@ -2,7 +2,7 @@ import Product from "../models/products";
 
 const getProducts = async (req, res) => {
   try {
-    const products = await Product.find({});
+    const products = await Product.find({}).populate("shopId");
     return res.status(200).json({
       message: "Productos",
       data: products,
@@ -58,6 +58,24 @@ const getProductById = async (req, res) => {
       error: true,
     });
   }
+};
+
+const searchProducts = async (req, res) => {
+  const searchQuery = req.query.q;
+  const regex = new RegExp(searchQuery, "i");
+
+  await Product.find({
+    $or: [{ name: regex }, { description: regex }, { category: regex }],
+  })
+    .populate("shopId")
+    .then((products) => {
+      return res.status(200).json({
+        message: "Resultado de busqueda",
+        data: products,
+        error: false,
+      });
+    })
+    .catch((error) => res.status(500).json({ error }));
 };
 
 const deleteProduct = async (req, res) => {
@@ -134,4 +152,5 @@ export default {
   deleteProduct,
   updateProduct,
   getProductById,
+  searchProducts,
 };

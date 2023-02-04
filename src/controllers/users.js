@@ -52,9 +52,14 @@ const getUserById = async (req, res) => {
 
 const updateUserShop = async (req, res) => {
   try {
-    const user = await User.findByIdAndUpdate(req.params.id, {
-      shopId: req.body.shopId,
-    });
+    const user = await User.findByIdAndUpdate(
+      req.params.id,
+      {
+        shopId: req.body.shopId,
+        firebaseUid: req.body.firebaseUid,
+      },
+      { new: true }
+    );
     if (!user) {
       return res.status(404).json({
         message: "El usuario no existe",
