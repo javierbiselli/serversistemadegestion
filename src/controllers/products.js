@@ -124,7 +124,7 @@ const updateProduct = async (req, res) => {
         hasStar: req.body.hasStar,
       },
       { new: true }
-    );
+    ).populate("shopId");
     if (!product) {
       return res.status(404).json({
         message: "El producto no existe",
