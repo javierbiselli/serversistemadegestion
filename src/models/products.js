@@ -16,6 +16,12 @@ const productsSchema = new mongoose.Schema({
   promotionValidDate: { type: String, required: false },
   shopId: { type: mongoose.Schema.Types.ObjectId, ref: "Shop" },
   hasStar: { type: Boolean, required: true },
+  keywords: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
 });
 
 export default mongoose.model("Product", productsSchema);

@@ -62,16 +62,19 @@ const getProductById = async (req, res) => {
 
 const searchProducts = async (req, res) => {
   const searchQuery = req.query.q;
-  const regex = new RegExp(searchQuery, "i");
+  const searchWords = searchQuery.split(" ");
+  const regex = new RegExp(searchWords.join("|"), "i");
 
   await Product.find({
-    $or: [{ name: regex }, { description: regex }, { category: regex }],
+    $and: [{ keywords: { $all: searchWords } }, { isActive: true }],
   })
     .populate("shopId")
     .then((products) => {
       return res.status(200).json({
-        message: "Resultado de busqueda",
-        data: products,
+        message: "Resultado de búsqueda",
+        data: products.filter((product) =>
+          product.keywords.join(" ").match(regex)
+        ),
         error: false,
       });
     })
@@ -122,6 +125,7 @@ const updateProduct = async (req, res) => {
         promotionMessage: req.body.promotionMessage,
         promotionValidDate: req.body.promotionValidDate,
         hasStar: req.body.hasStar,
+        keywords: req.body.keywords,
       },
       { new: true }
     ).populate("shopId");
